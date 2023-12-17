@@ -1,0 +1,95 @@
+\documentclass[xcolor={svgnames,rgb},aspectratio=1610]{ctexbeamer}
+% xcolor: e.g. provides \colorlet
+% dvipsnames option: extra named colours
+% aspectratio=1610: for modern widescreen monitors...
+% see https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX for more detail
+
+% equation annotations also work in articles, of course (then might need explicit \usepackage[dvipsnames]{xcolor}
+
+%%% standard math packages for equations:
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{annotate-equations}
+
+\begin{document}
+    % \colorlet{Mycolor1}{green!10!orange}: A color named Mycolor1 is created with 10% green and 90% orange.
+    % =============== dvipsnames
+    % \colorlet{colorp}{NavyBlue}
+    % \colorlet{colorT}{WildStrawberry}
+    % \colorlet{colork}{ForestGreen}%OliveGreen
+    % \colorlet{colorM}{RoyalPurple}
+    % \colorlet{colorNb}{Plum}
+    % \colorlet{colorIs}{black}
+    % =============== dvipsnames
+
+    % =============== svgnames
+    \colorlet{color1}{MediumBlue} % DodgerBlue DeepSkyBlue
+    \colorlet{color2}{BlueViolet}
+    \colorlet{color3}{Green}%OliveGreen
+    \colorlet{color4}{LightPink}
+    \colorlet{color5}{Aqua}
+    \colorlet{color6}{MediumTurquoise}
+\begin{frame}
+    \LARGE %%% increase font size to make equation more readable!
+
+    %%% we define our own colors upfront - this makes it easier to keep it consistent if you change your mind
+
+
+     % Plum
+     % NavyBlue
+     % Bittersweet
+     % xkcdHunterGreen
+
+
+    \begin{equation*}
+        \color{Black}
+        \mathcal{O}\big(
+            (
+            % \tikzmarknode is what links parts of the equation and corresponding annotations
+            \eqnmarkbox[color1]{p1}{p}
+            \eqnmarkbox[color2]{k1}{\kappa}^3 % note that we have the ^3 outside the \tikzmarknode
+            )
+            \eqnmarkbox{T1}{T}
+            +
+            (
+            \eqnmarkbox[color3]{p2}{p} % tikzmarks need distinct names!
+            \eqnmark[color4]{k2}{\kappa}
+            )
+            (
+            \eqnmarkbox[color5]{T2}{T}^2
+            \tikzmarknode{Is}{|\mathcal{I}^*|}
+            \eqnmarkbox[color6]{Nb}{N}_{\!\!\eqnmarkbox[DarkOrange]{b}{b}}
+            \eqnmark[color1]{M}{M}
+            )
+        \big)
+    \end{equation*}
+    \annotatetwo[yshift=1em]{above}{p1}{p2}{\# of nodes}
+    \annotatetwo[yshift=-1em,xshift=0.2ex]{below}{T1}{T2}{\# of graphs in $\hat{\mathcal{G}}_T$}
+    \annotatetwo[yshift=-2em]{below}{k1}{k2}{max.\ indegree in $\hat{\mathcal{G}}_T$}
+    \annotate[yshift=3em]{above,left}{Is}{size of set of allowed interventions}
+    \annotate[yshift=1em]{above}{Nb}{\# of samples per batch}
+    \annotate[yshift=-1em]{below}{M}{\# of samples for $\mathbb{E}_y$}
+    \annotate[yshift=-3em]{below,left}{b}{batch index}
+\end{frame}
+
+\begin{frame}{测试}
+
+    \begin{equation*}
+    \eqnmarkbox[color1]{O}{\boldsymbol{O}} =
+    \eqnmarkbox[color2]{I}{\boldsymbol{I}}
+    \eqnmarkbox[color3]{Conv}{\circledast} 
+    \eqnmarkbox[color4]{F}{\boldsymbol{F}} +
+    \eqnmarkbox[color6]{REP}{\operatorname{REP}(\boldsymbol{b})}
+    \end{equation*}
+
+    \annotate[yshift=4em]{above,right}{O}{output featuremap of D-channdel}
+    \annotate[yshift=2em]{above,right}{I}{input featuremap of C-channdel}
+    \annotate[yshift=-1em]{below,left}{Conv}{convolution}
+    \annotate[yshift=-3em]{below,left}{F}{parameters of conv}
+    \annotate[yshift=-5em]{below,left}{REP}{XXXXXXXX}
+    
+\end{frame}
+\end{document}
